@@ -22,8 +22,8 @@ In this project, we harvest data from YouTube using the YouTube API. The harvest
 
 ## Features
 
-- Harvest YouTube data, including channel information and video details.
-- Store the harvested data in SQL databases and MongoDB.
+- YouTube Data Harvesting: Utilizes the YouTube Data API to extract channel details, playlists, and videos.
+- Storage with MongoDB & MySQL Databases: Illustrates how to store YouTube data in a  MongoDB & My SQL database for added flexibility.
 - Present the data in an interactive and user-friendly way using Streamlit.
 - Querying data using MySQL with the predefined questions
 
