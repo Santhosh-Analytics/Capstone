@@ -4,6 +4,7 @@ This project focuses on harvesting data from YouTube and storing it in a data wa
 ## Table of Contents
 
 - [Introduction](#introduction)
+- [Technology Stack Used](#Technology Stack Used)
 - [Features](#features)
 - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -27,5 +28,9 @@ In this project, we harvest data from YouTube using the YouTube API. The harvest
 
 ### Prerequisites
 
-- Python 3.x
+- Python 3.11.0 or higher.
+- Jupyter notebook.
+- MySQL.
+- MongoDB.
+- Youtube API key.
 - Necessary Python packages (specified in `requirements.txt`)
