@@ -1,4 +1,4 @@
-# <div align="center, color: #45292D">YouTube Data Harvesting and Warehousing</div>
+# <div align="center">YouTube Data Harvesting and Warehousing</div>
 
 This project focuses on harvesting data from YouTube and storing it in a data warehouse. It utilizes tools like SQL, MongoDB, and Streamlit for creating an interactive platform to view and manage the harvested YouTube data.
 
@@ -11,7 +11,9 @@ This project focuses on harvesting data from YouTube and storing it in a data wa
   - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
-- [License](#license)
+- [References](#References)
+- [Demo Video Link](#Demo Video Link)
+- [Conclusion](#Conclusion)
 
 ## Introduction
 
@@ -50,4 +52,23 @@ To run the YouTube Data Harvesting and Warehousing project, follow these steps:
 ## Usage
 Once the project is setup and running, users can access the Streamlit application through a web browser. The application will provide a user interface where users can perform the following actions:
 <h7 style='text-align: left; color: black;'><ol> <li > To access and analyze data from multiple YouTube channels. </li> <li> To retrive YouTube channel details by using the YouTube channel ID (Channel name, subscribers, total video count, playlist ID, video ID, likes, dislikes, comments of each video)  </li> <li >To store the data in a MongoDB database as a data lake. </li><li >To collect data for up to 10 different YouTube channels and store them in the data lake by clicking a button. </li><li >To select a channel name and migrate its data from the data lake to a SQL database as tables.</li><li >To search and retrieve data from the SQL database using different search options, including joining tables to get channel details.</li></ol><h7>
+
+## Contributing 
+We welcome contributions to improve this project. Feel free to open issues and pull requests.
+
+## References
+
+- Streamlit Documentation: https://docs.streamlit.io/
+- YouTube API Documentation: https://developers.google.com/youtube
+- MongoDB Documentation: https://docs.mongodb.com/
+- SQLAlchemy Documentation: https://docs.sqlalchemy.org/
+- Python Documentation: https://docs.python.org/
+- Matplotlib Documentation: https://matplotlib.org/
+
+## Demo Video Link
+
+## Conclusion
+
+This project successfully demonstrates the seamless integration of YouTube data harvesting, storage, and visualization. Through efficient use of APIs, databases, and interactive interfaces, we've showcased how to enrich and manage YouTube data for various analytical and informational purposes. 
+
 
