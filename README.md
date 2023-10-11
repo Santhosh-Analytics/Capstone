@@ -33,7 +33,7 @@ In this project, we harvest data from YouTube using the YouTube API. The harvest
 - MySQL.
 - MongoDB.
 - Youtube API key.
-- Necessary Python packages (specified in `requirements.txt`)
+- Necessary Python packages (specified in [`requirements.txt`](https://github.com/Santhosh-Analytics/Capstone/blob/main/requirements.txt))
 
 ### Installation
 
