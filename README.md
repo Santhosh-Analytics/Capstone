@@ -40,8 +40,11 @@ In this project, we harvest data from YouTube using the YouTube API. The harvest
 To run the YouTube Data Harvesting and Warehousing project, follow these steps:
 
 1. Install Python 3.11.0 or higher: Install the Python programming language on your machine.
-2. Install Required Libraries: Install the necessary Python libraries using pip or conda package manager. Required libraries (specified in `requirements.txt`).
-3. Set Up Google API: Set up a Google API project and obtain the necessary API credentials for accessing the YouTube API.
-4. Configure Database: Set up a MongoDB database and SQL database (MySQL) for storing the data.
+2. Install Required Libraries: Install the necessary Python libraries using pip or conda package manager. Required libraries (specified in [`requirements.txt`](https://github.com/Santhosh-Analytics/Capstone/blob/main/requirements.txt)).
+3. Set Up Google API: Set up a Google API project and obtain the necessary API credentials for accessing the YouTube API. Click [here](https://developers.google.com/youtube/v3/getting-started) for more guides & references.
+4. Configure Database: Set up a MongoDB database and SQL database (MySQL).
 5. Configure Application: Update the configuration file or environment variables with the necessary API credentials and database connection details.
-6. Run the Application: Launch the Streamlit application using the command-line interface.
+6. Run the Application: Launch the Streamlit application using the command-line interface. Clone this repository in your local machine. Open terminal /cmd and navigate to the directory and run this command 'streamlit run Main_mod.py'.
+
+## Usage
+
