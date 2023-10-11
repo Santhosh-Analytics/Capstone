@@ -4,7 +4,6 @@ This project focuses on harvesting data from YouTube and storing it in a data wa
 ## Table of Contents
 
 - [Introduction](#introduction)
-- [Technology Stack Used](#Technology Stack Used)
 - [Features](#features)
 - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -16,6 +15,7 @@ This project focuses on harvesting data from YouTube and storing it in a data wa
 ## Introduction
 
 In this project, we harvest data from YouTube using the YouTube API. The harvested data includes channel, playlist information, video details, and related statistics. This data is then stored and managed using SQL databases and MongoDB. Streamlit is used to create a user-friendly interface for interacting with the data.
+
 
 ## Features
 
@@ -34,3 +34,14 @@ In this project, we harvest data from YouTube using the YouTube API. The harvest
 - MongoDB.
 - Youtube API key.
 - Necessary Python packages (specified in `requirements.txt`)
+
+### Installation
+
+To run the YouTube Data Harvesting and Warehousing project, follow these steps:
+
+1. Install Python 3.11.0 or higher: Install the Python programming language on your machine.
+2. Install Required Libraries: Install the necessary Python libraries using pip or conda package manager. Required libraries (specified in `requirements.txt`).
+3. Set Up Google API: Set up a Google API project and obtain the necessary API credentials for accessing the YouTube API.
+4. Configure Database: Set up a MongoDB database and SQL database (MySQL) for storing the data.
+5. Configure Application: Update the configuration file or environment variables with the necessary API credentials and database connection details.
+6. Run the Application: Launch the Streamlit application using the command-line interface.
