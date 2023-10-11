@@ -1,4 +1,4 @@
-# <div align="center;color: #45292D;">YouTube Data Harvesting and Warehousing</div>
+# <div align="center, color: #45292D">YouTube Data Harvesting and Warehousing</div>
 
 This project focuses on harvesting data from YouTube and storing it in a data warehouse. It utilizes tools like SQL, MongoDB, and Streamlit for creating an interactive platform to view and manage the harvested YouTube data.
 
