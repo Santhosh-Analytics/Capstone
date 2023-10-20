@@ -5,6 +5,7 @@ This project focuses on harvesting data from YouTube and storing it in a data wa
 ## Table of Contents
 
 - [Introduction](#introduction)
+- [Problem Statement](#Problem-Statement)
 - [Features](#features)
 - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -18,6 +19,15 @@ This project focuses on harvesting data from YouTube and storing it in a data wa
 ## Introduction
 
 In this project, we harvest data from YouTube using the YouTube API. The harvested data includes channel, playlist information, video details, and related statistics. This data is then stored and managed using SQL databases and MongoDB. Streamlit is used to create a user-friendly interface for interacting with the data.
+
+## Problem Statement
+
+The problem statement is to create a Streamlit application that allows users to access and analyze data from multiple YouTube channels. The application should have the following features:
+  1. Ability to input a YouTube channel ID and retrieve all the relevant data (Channel name, subscribers, total video count, playlist ID, video ID, likes, dislikes, comments of each video) using Google API.
+  2. Option to store the data in a MongoDB database as a data lake.
+  3. Ability to collect data for up to 10 different YouTube channels and store them in the data lake by clicking a button.
+  4. Option to select a channel name and migrate its data from the data lake to a SQL database as tables.
+  5. Ability to search and retrieve data from the SQL database using different search options, including joining tables to get channel details.
 
 
 ## Features
