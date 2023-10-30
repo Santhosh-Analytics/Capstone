@@ -6,6 +6,7 @@ import json
 import pymongo
 import pandas as pd
 import pymysql
+from sqlalchemy import text
 from sqlalchemy import create_engine, text
 from sqlalchemy.exc import IntegrityError
 import mysql.connector
@@ -20,11 +21,6 @@ from streamlit_option_menu import option_menu
 from google.auth.exceptions import DefaultCredentialsError
 from googleapiclient.errors import HttpError
 
-
-
-
-# Mongo DB client for authentication
-mycl = pymongo.MongoClient("mongodb://localhost:27017")
 
 # defining images to display in streamlit app
 
@@ -45,15 +41,15 @@ with col1:
 	st.write("")
 
 with col2:
-	st.image(you_image, width=200,use_column_width=False)
+	st.image(you_image, use_column_width=True)
 
-with col3:
+with col3:	
 	st.write("")
 
 # Page title and break line
 st.markdown("<h1 style='text-align: center; color: #45292D;'> YouTube Data Harvesting and Warehousing using SQL, MongoDB and Streamlit </h1>", unsafe_allow_html=True)
 st.markdown("<hr style='border: 2px solid #805A59;'>", unsafe_allow_html=True)
-
+	
 # creating side bar and break line
 with st.sidebar:
     st.sidebar.markdown("<h1 style='text-align: center; color: #45292D;font-size: 28px; font-family: Arial, sans-serif;'>Menu", unsafe_allow_html=True)
@@ -83,7 +79,6 @@ if selected== 'Data Harvesting & Warehousing':
 	with tab1:
 		#creating 3 columns to separate different actions and used try method to handle error exceptions 
 		col1,col2,col3 = st.columns(3)
-
 		try:
 			#creating input to get the API and channel id and button to perform the action
 		    with col1:
@@ -92,29 +87,34 @@ if selected== 'Data Harvesting & Warehousing':
 		        search=st.button('🔍 Search')    
 
 		        # importing defined functions from the other module
-		        from Santhosh import alldata
+		        from Function_mod import alldata
 		      
 		    with col2:
 		    	# Running function to get data
-		    	channel_details=alldata(ch_id,API_KEY)
+		    	global channel_details
+		    	# channel_details=alldata(ch_id,API_KEY)
 
 		    	if search: 
 		    		# Displaying data in Json fromat 
+		    		channel_details=alldata(ch_id,API_KEY)
 		    		st.json(channel_details, expanded=True)
-		    		
 		    	
 			# Pushing data to Mongo DB
 		    with col3:
 		        mdb_load=st.button('Push data to MongoDB ➡️')
 		        mycl = pymongo.MongoClient("mongodb://localhost:27017")
+
 		        if mdb_load:
+		        	channel_details=alldata(ch_id,API_KEY)
 		        	mydb=mycl.Guvi_capstone
 		        	mycol = mydb.Channel_Name
-		        	mycol.insert_one(channel_details)
+		        	try:
+		        		mycol.insert_one(channel_details)
+		        		st.snow()
+		        		st.success('🟢 Channel details loaded to MongoDB')
+		        	except Exception as e:
+		        		st.error(f'❌ Error: {str(e)}')
 		        	
-		        	st.success('🟢 Channel details loaded to MongoDB')
-		        	st.snow()
-
 		except HttpError as e:
 		    st.write("Please check your API's quota. It must be expired") if 'quota' in str(e) else st.exception(e)
 
@@ -133,21 +133,34 @@ if selected== 'Data Harvesting & Warehousing':
 
 
 	with tab2:
+		col1,col2=st.columns(2)
+		with col1:
 
 		# getting channel name from the Mongo DB to list a dropdown so we can move channel details to SQL
-	    mydb=mycl.Guvi_capstone
-	    mycol=mydb.Channel_Name
-	    ch_name= mycol.find({},{"_id" : 0, "title" : 1})
-	    names=set()
-	    for i in ch_name:
-	        ch_ttitle = i['title']
-	        names.add(ch_ttitle)
-	      
-	    name_selection = st.selectbox('Select a channel to move the channel data into MySQL',(list(names)),index=0)
-	    mysql_load=st.button('Push into MySQL 🛫')
-	    if mysql_load:
-	    	from Santhosh import mdb_to_sql
-	    	mdb_to_sql(name_selection)
+
+		    mydb=mycl.Guvi_capstone
+		    mycol=mydb.Channel_Name
+		    ch_name= mycol.find({},{"_id" : 0, "title" : 1})
+		    names=set()
+		    name = ("👇Select a channel name to migrate the data to MySQL👇")
+		    for i in ch_name:
+		        ch_ttitle = i['title']
+		        names.add(ch_ttitle)
+		      
+		    name_selection = st.selectbox('Select a channel to move the channel data into MySQL',[name]+(list(names)),index=0)
+		    mysql_load=st.button('Push into MySQL 🛫')
+		    if mysql_load:
+	    		from Function_mod import mdb_to_sql
+	    		mdb_to_sql(name_selection)
+
+
+	with col2:
+		    if name_selection != name:
+		    	query = {"title": name_selection}
+		    	results = list(mycol.find(query,{"channel_id": 1, "title": 1, "channel_views": 1,"description":1,"subscriber_count":1,"video_count":1,"status":1,"playlist":1}))
+		    	st.json(results, expanded=True)
+
+	    
 
 	# Defining questions based on the project details provided by Guvi
 	with tab3:
@@ -166,12 +179,13 @@ if selected== 'Data Harvesting & Warehousing':
 	    # Creating queries to interact with MySQL to get the data and mapping to the respective question
 	    ques = st.selectbox('Lets find something..!🕵️‍♂️',(Ques_0,Ques_1,Ques_2,Ques_3,Ques_4,Ques_5,Ques_6,Ques_7,Ques_8,Ques_9,Ques_10))
 	    go_find=st.button('🔍 Lets find out!')
-	    from Santhosh import sdfmd
+	    
 
 	    if go_find:
 	    	#connecting to MySQL
-	        engine = create_engine('mysql+pymysql://root:Sansuganyas%4022@localhost:3306/guvi_capstone')
+	        engine = create_engine('mysql+pymysql://root:Sansuganyas%4022@localhost:3306/Guvi_capstone')
 	        st.markdown("<hr style='border: 1px solid #805A59;'>", unsafe_allow_html=True)
+	        from Function_mod import sdfmd
         	
 	        if ques==Ques_1:
 	            query=text('SELECT ch.channel_id, ch.title as Channel_name, vd.title as video_title FROM channel_details as ch join playlist_details as pl on ch.channel_id = pl.channel_id join video_details as vd on pl.playlist_id = vd.playlist_id')
@@ -212,17 +226,10 @@ if selected== 'Data Harvesting & Warehousing':
 	            st.markdown("<hr style='border: 1px solid #805A59;'>", unsafe_allow_html=True)
 
 	        elif ques==Ques_5:
-	            query = text("select ch.title as Channel_Name, vd.title as Video_Title,vd.like_count as Likes from channel_details as ch join playlist_details as pl on ch.channel_id = pl.channel_id join video_details as vd on pl.playlist_id = vd.playlist_id order by like_count desc limit 5 ")
+	            query = text("select ch.title as Channel_Name, vd.title as Video_Title,vd.like_count as Likes from channel_details as ch join playlist_details as pl on ch.channel_id = pl.channel_id join video_details as vd on pl.playlist_id = vd.playlist_id order by like_count desc limit 1 ")
 	            df=sdfmd(query,'Channel_Name','Video_Title','Likes')
 	            st.dataframe(df, width=None, height=None,hide_index=True,use_container_width=True)
 	            st.markdown("<hr style='border: 1px solid #805A59;'>", unsafe_allow_html=True)
-	            # df['channel_title'] = df['channel_title'].str.replace(' ', '\n')
-	            # snsplot(df,sns.barplot,'channel_title','Avg_Dur_Minutes','Average duration by channel','Channel Names','Duration')
-	            # st.markdown("<hr style='border: 1px solid #805A59;'>", unsafe_allow_html=True)
-	            # snsplot(df,sns.barplot,'channel_title','min_Dur_Minutes','Minimum duration by channel','Channel Names','Duration')
-	            # st.markdown("<hr style='border: 1px solid #805A59;'>", unsafe_allow_html=True)
-	            # snsplot(df,sns.barplot,'channel_title','max_Dur_Minutes','Maximum duration by channel','Channel Names','Duration')
-	            # st.markdown("<hr style='border: 1px solid #805A59;'>", unsafe_allow_html=True)
 
 	        elif ques==Ques_6:
 	        	query=text("select title as Video_Title, like_count as Likes, dislike_count as Dislikes from video_details where title != 'Video not available'")
@@ -256,7 +263,7 @@ if selected== 'Data Harvesting & Warehousing':
 
 
 # Creating another side bar to get multiple channel details at once
-if 	selected == 'Bulk upload':
+if 	selected == 'Bulk data harvesting & Warehousing':
 	#Defining columns and input
 	col1,col2, col3 = st.columns(3)
 	with col1:
@@ -269,7 +276,7 @@ if 	selected == 'Bulk upload':
 	with col2:
 		# importing defined functions from another module 
 		if search1:
-			from aaa import get_ch_det
+			from Functuib_mod_bulk import get_ch_det
 			channel_data = get_ch_det(ch_ids,API)
 			st.json(channel_data, expanded=True)
 			with col3:
