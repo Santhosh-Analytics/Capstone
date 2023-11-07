@@ -77,7 +77,7 @@ We welcome contributions to improve this project. Feel free to open issues and p
 
 ## Demo video link
 
-- [Demo video link](https://github.com/Santhosh-Analytics/YouTube-Data-Harvesting-and-Warehousing)
+- [Demo video link]([https://github.com/Santhosh-Analytics/YouTube-Data-Harvesting-and-Warehousing](https://clipchamp.com/watch/K925TFFfYAS))
 
 
 ## Conclusion
