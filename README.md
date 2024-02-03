@@ -1,3 +1,8 @@
+<div align="center">
+    <img alt="Static Badge" src="https://img.shields.io/badge/You_Tube_Data-Harvesting_Warehousing-blue?style=for-the-badge&labelColor=green&logo=Python&logoColor=%233776AB">
+
+</div>
+
 # <div align="center">YouTube Data Harvesting and Warehousing</div>
 
 This project focuses on harvesting data from YouTube and storing it in a data warehouse. It utilizes tools like SQL, MongoDB, and Streamlit for creating an interactive platform to view and manage the harvested YouTube data.
@@ -5,16 +10,16 @@ This project focuses on harvesting data from YouTube and storing it in a data wa
 ## Table of Contents
 
 - [Introduction](#introduction)
-- [Problem Statement](#Problem-Statement)
+- [Problem Statement](#problem-statement)
 - [Features](#features)
 - [Setup](#setup)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
-- [References](#References)
-- [Demo video](#Demo-video-link)
-- [Conclusion](#Conclusion)
+- [References](#references)
+- [Demo video](#demo-video-link)
+- [Conclusion](#conclusion)
 
 ## Introduction
 
@@ -60,10 +65,12 @@ To run the YouTube Data Harvesting and Warehousing project, follow these steps:
 6. Run the Application: Launch the Streamlit application using the command-line interface. Clone this repository in your local machine. Open terminal /cmd and navigate to the directory and run this command 'streamlit run Main_mod.py'.
 
 ## Usage
+
 Once the project is setup and running, users can access the Streamlit application through a web browser. The application will provide a user interface where users can perform the following actions:
 <h7 style='text-align: left; color: black;'><ol> <li> Please make sure to adjust the module names to match the actual names of the uploaded modules.</li> <li > To access and analyze data from multiple YouTube channels. </li> <li> To retrive YouTube channel details by using the YouTube channel ID (Channel name, subscribers, total video count, playlist ID, video ID, likes, dislikes, comments of each video)  </li> <li >To store the data in a MongoDB database as a data lake. </li><li >To collect data for up to 10 different YouTube channels and store them in the data lake by clicking a button. </li><li >To select a channel name and migrate its data from the data lake to a SQL database as tables.</li><li >To search and retrieve data from the SQL database using different search options, including joining tables to get channel details.</li></ol><h7>
 
 ## Contributing 
+
 We welcome contributions to improve this project. Feel free to open issues and pull requests.
 
 ## References
